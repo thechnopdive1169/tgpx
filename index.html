@@ -72,36 +72,44 @@ body{
         inset 0 0 30px rgba(0,0,0,.4);
 }
 
+#proxy-list{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:10px;
+}
+
 .proxy{
     display:flex;
+    justify-content:center;
     align-items:center;
-    justify-content:space-between;
-    gap:15px;
 
-    margin-bottom:12px;
-    padding:14px 18px;
+    height:42px;
+    padding:0;
 
     text-decoration:none;
-    color:var(--paper);
-
-    border:1px solid rgba(197,154,82,.25);
-    border-radius:8px;
+    color:#f5e6c8;
 
     background:
         linear-gradient(
-            90deg,
-            rgba(125,30,30,.35),
-            rgba(0,0,0,.15)
+            180deg,
+            #7d1e1e,
+            #4d1111
         );
 
-    transition:.25s;
+    border:1px solid #c59a52;
+    border-radius:6px;
+
+    font-family:"Cinzel", serif;
+    font-size:0.9rem;
+    font-weight:600;
+
+    transition:0.2s;
 }
 
 .proxy:hover{
-    transform:translateX(8px);
-    border-color:var(--gold);
-    box-shadow:
-        0 0 15px rgba(197,154,82,.35);
+    transform:translateY(-2px);
+    box-shadow:0 0 12px rgba(197,154,82,.5);
+    border-color:#e0b56d;
 }
 
 .badge{
@@ -131,6 +139,30 @@ body{
     text-align:center;
     color:#8f7856;
     font-size:.9rem;
+}
+
+    @media (max-width:1200px){
+    #proxy-list{
+        grid-template-columns:repeat(5, 1fr);
+    }
+}
+
+@media (max-width:900px){
+    #proxy-list{
+        grid-template-columns:repeat(4, 1fr);
+    }
+}
+
+@media (max-width:700px){
+    #proxy-list{
+        grid-template-columns:repeat(3, 1fr);
+    }
+}
+
+@media (max-width:500px){
+    #proxy-list{
+        grid-template-columns:repeat(2, 1fr);
+    }
 }
 </style>
 </head>
@@ -175,21 +207,16 @@ fetch(url)
 
     container.innerHTML = "";
 
-    proxies.forEach((proxy, i) => {
+proxies.forEach((proxy, i) => {
+    const link = document.createElement("a");
 
-        const link =
-            document.createElement("a");
+    link.href = proxy;
+    link.className = "proxy";
 
-        link.href = proxy;
-        link.className = "proxy";
+    link.textContent = `Proxy ${i + 1}`;
 
-        link.innerHTML = `
-            <span class="badge">#${i + 1}</span>
-            <span class="proxy-text">${proxy}</span>
-        `;
-
-        container.appendChild(link);
-    });
+    container.appendChild(link);
+});
 
     if (!proxies.length) {
         container.innerHTML =
