@@ -154,7 +154,16 @@ body{
     box-shadow:0 0 12px rgba(197,154,82,.5);
     border-color:#e0b56d;
 }
-
+.proxy.clicked{
+    background:
+        linear-gradient(
+            180deg,
+            #1f7a1f,
+            #125012
+        );
+    border-color:#7ee07e;
+    color:#ffffff;
+}
 .badge{
     background:var(--red);
     color:#fff4d6;
@@ -255,8 +264,11 @@ proxies.forEach((proxy, i) => {
 
     link.href = proxy;
     link.className = "proxy";
-
     link.textContent = `Proxy ${i + 1}`;
+
+    link.addEventListener("click", () => {
+        link.classList.add("clicked");
+    });
 
     container.appendChild(link);
 });
