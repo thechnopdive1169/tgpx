@@ -1,5 +1,7 @@
 # Telegram Proxy Saloon
 
+# https://thechnopdive1169.github.io/tgpx/
+
 A stylish **Red Dead Redemption 2-inspired Telegram MTProto proxy browser** that automatically fetches proxy links from a remote text file and displays them as clickable buttons.
 
 Users can simply open the page, choose a proxy, and connect directly through Telegram using the `tg://proxy` protocol.
