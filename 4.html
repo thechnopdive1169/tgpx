@@ -226,6 +226,7 @@ body{
         <option value="none">Default Order</option>
         <option value="asc">IP Ascending</option>
         <option value="desc">IP Descending</option>
+        <option value="hidden">Hide IPs</option>
     </select>
 </div>
 
@@ -258,7 +259,7 @@ function ipToNumber(ip) {
     );
 }
 
-function renderProxies(list) {
+function renderProxies(list, showIPs = true) {
 
     const container =
         document.getElementById("proxy-list");
@@ -271,7 +272,12 @@ function renderProxies(list) {
 
         link.href = item.proxy;
         link.className = "proxy";
-        link.textContent = item.ip || `Proxy ${i + 1}`;
+
+        if (showIPs) {
+            link.textContent = item.ip || `Proxy ${i + 1}`;
+        } else {
+            link.textContent = `Proxy ${i + 1}`;
+        }
 
         link.addEventListener("click", () => {
             link.classList.add("clicked");
@@ -310,31 +316,36 @@ fetch(url)
     renderProxies(proxyData);
 
     document
-        .getElementById("sort-ip")
-        .addEventListener("change", e => {
+    .getElementById("sort-ip")
+    .addEventListener("change", e => {
 
-            const value = e.target.value;
+        const value = e.target.value;
 
-            let sorted = [...proxyData];
+        let sorted = [...proxyData];
+        let showIPs = true;
 
-            if (value === "asc") {
-                sorted.sort(
-                    (a, b) =>
-                        ipToNumber(a.ip) -
-                        ipToNumber(b.ip)
-                );
-            }
+        if (value === "asc") {
+            sorted.sort(
+                (a, b) =>
+                    ipToNumber(a.ip) -
+                    ipToNumber(b.ip)
+            );
+        }
 
-            if (value === "desc") {
-                sorted.sort(
-                    (a, b) =>
-                        ipToNumber(b.ip) -
-                        ipToNumber(a.ip)
-                );
-            }
+        if (value === "desc") {
+            sorted.sort(
+                (a, b) =>
+                    ipToNumber(b.ip) -
+                    ipToNumber(a.ip)
+            );
+        }
 
-            renderProxies(sorted);
-        });
+        if (value === "hidden") {
+            showIPs = false;
+        }
+
+        renderProxies(sorted, showIPs);
+    });
 
 })
 .catch(() => {
