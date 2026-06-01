@@ -201,8 +201,24 @@ body{
             WANTED: A RELIABLE CONNECTION
         </div>
     </div>
-
+    
     <div class="board">
+        
+<div style="margin-bottom:15px;text-align:right;">
+    <select id="sort-ip" style="
+        background:#241710;
+        color:#e2d2b0;
+        border:1px solid #c59a52;
+        padding:8px;
+        border-radius:6px;
+        font-family:'Cinzel',serif;
+    ">
+        <option value="none">Default Order</option>
+        <option value="asc">IP Ascending</option>
+        <option value="desc">IP Descending</option>
+    </select>
+</div>
+
         <div id="proxy-list" class="loading">
             Loading proxies...
         </div>
@@ -218,44 +234,108 @@ body{
 const url =
 "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/MTProto.txt";
 
-fetch(url)
-.then(r => r.text())
-.then(text => {
+let proxyData = [];
+
+function ipToNumber(ip) {
+    if (!ip) return 0;
+
+    const parts = ip.split(".");
+    if (parts.length !== 4) return 0;
+
+    return parts.reduce(
+        (acc, part) => (acc * 256) + parseInt(part, 10),
+        0
+    );
+}
+
+function renderProxies(list) {
 
     const container =
         document.getElementById("proxy-list");
 
-    const proxies = text
-        .split(/\r?\n/)
-        .map(x => x.trim())
-        .filter(x => x.startsWith("tg://proxy"));
-
     container.innerHTML = "";
 
-proxies.forEach((proxy, i) => {
-    const link = document.createElement("a");
+    list.forEach((item, i) => {
 
-    link.href = proxy;
-    link.className = "proxy";
-    link.textContent = `Proxy ${i + 1}`;
+        const link = document.createElement("a");
 
-    link.addEventListener("click", () => {
-        link.classList.add("clicked");
+        link.href = item.proxy;
+        link.className = "proxy";
+        link.textContent = item.ip || `Proxy ${i + 1}`;
+
+        link.addEventListener("click", () => {
+            link.classList.add("clicked");
+        });
+
+        container.appendChild(link);
     });
 
-    container.appendChild(link);
-});
-
-    if (!proxies.length) {
+    if (!list.length) {
         container.innerHTML =
             '<div class="loading">No proxies found.</div>';
     }
+}
+
+fetch(url)
+.then(r => r.text())
+.then(text => {
+
+    proxyData = text
+        .split(/\r?\n/)
+        .map(x => x.trim())
+        .filter(x => x.startsWith("tg://proxy"))
+        .map(proxy => {
+
+            const serverMatch =
+                proxy.match(/server=([^&]+)/i);
+
+            return {
+                proxy,
+                ip: serverMatch
+                    ? decodeURIComponent(serverMatch[1])
+                    : ""
+            };
+        });
+
+    renderProxies(proxyData);
+
+    document
+        .getElementById("sort-ip")
+        .addEventListener("change", e => {
+
+            const value = e.target.value;
+
+            let sorted = [...proxyData];
+
+            if (value === "asc") {
+                sorted.sort(
+                    (a, b) =>
+                        ipToNumber(a.ip) -
+                        ipToNumber(b.ip)
+                );
+            }
+
+            if (value === "desc") {
+                sorted.sort(
+                    (a, b) =>
+                        ipToNumber(b.ip) -
+                        ipToNumber(a.ip)
+                );
+            }
+
+            renderProxies(sorted);
+        });
+
 })
 .catch(() => {
+
     document.getElementById("proxy-list").innerHTML =
         '<div class="loading">Failed to load proxy list.</div>';
+
 });
 </script>
+    
+
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
