@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Telegram Proxy Saloon | Free MTProto Proxy Directory</title>
+
+<meta name="description" content="Browse and connect to Telegram MTProto proxies with a unique Red Dead Redemption inspired interface. Fast, responsive, and automatically updated proxy directory.">
+
+<meta name="keywords" content="
+telegram proxy,
+mtproto proxy,
+telegram mtproto,
+telegram unblock,
+telegram connection,
+telegram proxy list,
+telegram proxy directory,
+telegram proxy browser,
+free telegram proxy,
+telegram desktop proxy,
+telegram android proxy,
+telegram ios proxy,
+mtproto list,
+telegram proxy manager,
+telegram proxy saloon
+">
+
+<meta name="author" content="Telegram Proxy Saloon">
+<meta name="robots" content="index, follow">
+<meta name="language" content="en">
+<meta name="theme-color" content="#7d1e1e">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Telegram Proxy Saloon">
+<meta property="og:description" content="Browse hundreds of Telegram MTProto proxies through a stylish western-themed interface.">
+<meta property="og:image" content="/preview.jpg">
+<meta property="og:url" content="https://your-domain.com">
+<meta property="og:site_name" content="Telegram Proxy Saloon">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Telegram Proxy Saloon">
+<meta name="twitter:description" content="Free Telegram MTProto proxy directory with one-click connection.">
+<meta name="twitter:image" content="/preview.jpg">
+
+<link rel="canonical" href="https://thechnopdive1169.github.io/tgpx/">
+
+    
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#130d09;
+    --panel:#241710;
+    --panel2:#36231a;
+    --gold:#c59a52;
+    --gold-dark:#8d6632;
+    --paper:#e2d2b0;
+    --red:#7d1e1e;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top, rgba(125,30,30,.25), transparent 40%),
+        linear-gradient(to bottom,#1a120d,#0d0907);
+    color:var(--paper);
+    font-family:"Cinzel", serif;
+}
+
+.container{
+    margin:auto;
+    padding:40px 20px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.header h1{
+    margin:0;
+    font-size:3rem;
+    letter-spacing:4px;
+    color:var(--gold);
+    text-transform:uppercase;
+    text-shadow:
+        0 0 10px rgba(197,154,82,.4),
+        2px 2px 0 #000;
+}
+
+.subtitle{
+    margin-top:10px;
+    color:#b89b72;
+    letter-spacing:2px;
+}
+
+.board{
+    background:
+        linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
+        linear-gradient(135deg,var(--panel),var(--panel2));
+    border:3px solid var(--gold-dark);
+    border-radius:12px;
+    padding:25px;
+    box-shadow:
+        0 0 40px rgba(0,0,0,.6),
+        inset 0 0 30px rgba(0,0,0,.4);
+}
+
+#proxy-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:10px;
+}    
+    
+.proxy{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    height:42px;
+    padding:0;
+
+    text-decoration:none;
+    color:#f5e6c8;
+
+    background:
+        linear-gradient(
+            180deg,
+            #7d1e1e,
+            #4d1111
+        );
+
+    border:1px solid #c59a52;
+    border-radius:6px;
+
+    font-family:"Cinzel", serif;
+    font-size:0.9rem;
+    font-weight:600;
+
+    transition:0.2s;
+}
+
+.proxy:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 12px rgba(197,154,82,.5);
+    border-color:#e0b56d;
+}
+.proxy.clicked{
+    background:
+        linear-gradient(
+            180deg,
+            #1f7a1f,
+            #125012
+        );
+    border-color:#7ee07e;
+    color:#ffffff;
+}
+.badge{
+    background:var(--red);
+    color:#fff4d6;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:.85rem;
+    font-weight:bold;
+}
+
+.proxy-text{
+    flex:1;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.loading{
+    text-align:center;
+    color:var(--gold);
+    padding:30px;
+}
+
+.footer{
+    margin-top:25px;
+    text-align:center;
+    color:#8f7856;
+    font-size:.9rem;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Telegram Proxy Saloon</h1>
+        <div class="subtitle">
+            WANTED: A RELIABLE CONNECTION
+        </div>
+    </div>
+
+    <div class="board">
+        <div id="proxy-list" class="loading">
+            Loading proxies...
+        </div>
+    </div>
+
+<div class="board" style="margin-top:25px;">
+    <h2 style="
+        text-align:center;
+        color:var(--gold);
+        margin-top:0;
+        letter-spacing:2px;
+    ">
+        RESOURCES
+    </h2>
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        gap:12px;
+    ">
+
+        <a class="proxy" href="https://telegram.org" target="_blank">
+            Telegram Official
+        </a>
+
+        <a class="proxy" href="https://core.telegram.org/api/mtproto" target="_blank">
+            MTProto Documentation
+        </a>
+
+        <a class="proxy" href="https://core.telegram.org" target="_blank">
+            Telegram API
+        </a>
+
+        <a class="proxy" href="https://github.com/Argh94/Proxy-List" target="_blank">
+            Proxy Source
+        </a>
+
+        <a class="proxy" href="https://desktop.telegram.org" target="_blank">
+            Telegram Desktop
+        </a>
+
+        <a class="proxy" href="https://telegram.org/android" target="_blank">
+            Telegram Android
+        </a>
+
+    </div>
+</div>
+
+
+<div class="board" style="margin-top:25px;">
+    <h2 style="
+        text-align:center;
+        color:var(--gold);
+        margin-top:0;
+        letter-spacing:2px;
+    ">
+        RESOURCES
+    </h2>
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        gap:12px;
+    ">
+
+        <a class="proxy" href="https://github.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB" target="_blank">
+            V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB
+        </a>
+
+        <a class="proxy" href="https://github.com/Argh94/Proxy-List/blob/main/MTProto.txt" target="_blank">
+            Argh94/Proxy-List
+        </a>
+
+        <a class="proxy" href="https://github.com/SoliSpirit/mtproto/blob/master/all_proxies.txt" target="_blank">
+            SoliSpirit/mtproto
+        </a>
+
+    </div>
+</div>
+    
+<footer style="
+    margin-top:30px;
+    padding:25px;
+    text-align:center;
+    color:#8f7856;
+    border-top:1px solid rgba(197,154,82,.25);
+">
+
+    <div style="
+        font-size:1.1rem;
+        color:var(--gold);
+        margin-bottom:10px;
+    ">
+        Telegram Proxy Saloon
+    </div>
+
+    <div style="
+        max-width:900px;
+        margin:auto;
+        line-height:1.8;
+    ">
+        Browse public Telegram MTProto proxies through a fast and lightweight interface.
+        This website does not host proxy servers and only displays publicly available
+        proxy links collected from external sources.
+    </div>
+
+    <div style="
+        margin-top:15px;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:15px;
+    ">
+        <a href="https://telegram.org" target="_blank" style="color:var(--gold);">
+            Telegram
+        </a>
+
+        <a href="https://core.telegram.org/api/mtproto" target="_blank" style="color:var(--gold);">
+            MTProto
+        </a>
+
+        <a href="https://github.com/Argh94/Proxy-List" target="_blank" style="color:var(--gold);">
+            Source Repository
+        </a>
+    </div>
+
+    <div style="
+        margin-top:20px;
+        font-size:.85rem;
+        opacity:.8;
+    ">
+        © 2026 Telegram Proxy Saloon. All rights reserved.
+    </div>
+
+</footer>
+    
+</div>
+
+
+
+<script>
+// Add or remove sources here
+const sources = [
+    "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/MTProto.txt",
+    // "https://example.com/proxies.txt",
+    // "https://another-source.com/list.txt"
+];
+
+const container = document.getElementById("proxy-list");
+
+Promise.all(
+    sources.map(url =>
+        fetch(url)
+            .then(r => {
+                if (!r.ok) throw new Error();
+                return r.text();
+            })
+            .catch(() => "")
+    )
+)
+.then(results => {
+
+    // Merge all sources into one big string
+    const allText = results.join("\n");
+
+    // Parse proxies
+    let proxies = allText
+        .split(/\r?\n/)
+        .map(x => x.trim())
+        .filter(x => x.length > 0)
+        .map(proxy => {
+            // Convert https://t.me/proxy?... -> tg://proxy?...
+            if (proxy.startsWith("https://t.me/proxy?")) {
+                return proxy.replace(
+                    /^https:\/\/t\.me\/proxy\?/,
+                    "tg://proxy?"
+                );
+            }
+
+            return proxy;
+        })
+        // Keep only valid Telegram proxy links
+        .filter(proxy =>
+            proxy.startsWith("tg://proxy?")
+        );
+
+    // Remove duplicates
+    proxies = [...new Set(proxies)];
+
+    container.innerHTML = "";
+
+    proxies.forEach((proxy, i) => {
+        const link = document.createElement("a");
+
+        link.href = proxy;
+        link.className = "proxy";
+        link.textContent = `Proxy ${i + 1}`;
+
+        link.addEventListener("click", () => {
+            link.classList.add("clicked");
+        });
+
+        container.appendChild(link);
+    });
+
+    if (!proxies.length) {
+        container.innerHTML =
+            '<div class="loading">No proxies found.</div>';
+    }
+})
+.catch(() => {
+    container.innerHTML =
+        '<div class="loading">Failed to load proxy list.</div>';
+});
+</script>
+
+
+  
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Telegram Proxy Saloon",
+  "applicationCategory":"NetworkingApplication",
+  "operatingSystem":"Any",
+  "description":"A web application for browsing and connecting to Telegram MTProto proxies.",
+  "url":"https://thechnopdive1169.github.io/tgpx/",
+  "offers":{
+    "@type":"Offer",
+    "price":"0",
+    "priceCurrency":"USD"
+  }
+}
+</script>
+</body>
+</html>
