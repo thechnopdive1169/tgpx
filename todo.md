@@ -378,3 +378,25 @@ searchInput
 loadProxies();
 </script>
 ```
+
+```js
+const proxyRegex =
+    /(tg:\/\/proxy\?[^\s]+|https:\/\/t\.me\/proxy\?[^\s]+|tg:\/\/socks\?[^\s]+|https:\/\/t\.me\/socks\?[^\s]+)/g;
+
+let proxies = [];
+
+allText.split(/\r?\n/).forEach(line => {
+    const matches = line.match(proxyRegex);
+    if (!matches) return;
+
+    matches.forEach(proxy => {
+        proxy = proxy
+            .replace(/^https:\/\/t\.me\/proxy\?/, "tg://proxy?")
+            .replace(/^https:\/\/t\.me\/socks\?/, "tg://socks?");
+
+        proxies.push(proxy);
+    });
+});
+
+proxies = [...new Set(proxies)];
+```
