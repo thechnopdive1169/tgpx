@@ -387,30 +387,41 @@ Promise.all(
     // Merge all sources into one big string
     const allText = results.join("\n");
 
-    // Parse proxies
-    let proxies = allText
-        .split(/\r?\n/)
-        .map(x => x.trim())
-        .filter(x => x.length > 0)
-        .map(proxy => {
-            // Convert https://t.me/proxy?... -> tg://proxy?...
-            if (proxy.startsWith("https://t.me/proxy?")) {
-                return proxy.replace(
-                    /^https:\/\/t\.me\/proxy\?/,
-                    "tg://proxy?"
-                );
-            }
+// Parse proxies
+let proxies = allText
+    .split(/\r?\n/)
+    .map(x => x.trim())
+    .filter(x => x.length > 0)
+    .map(proxy => {
 
-            return proxy;
-        })
-        // Keep only valid Telegram proxy links
-        .filter(proxy =>
-            proxy.startsWith("tg://proxy?")
-        );
+        // MTProto
+        if (proxy.startsWith("https://t.me/proxy?")) {
+            return proxy.replace(
+                /^https:\/\/t\.me\/proxy\?/,
+                "tg://proxy?"
+            );
+        }
 
-    // Remove duplicates
-    proxies = [...new Set(proxies)];
+        // SOCKS5
+        if (proxy.startsWith("https://t.me/socks?")) {
+            return proxy.replace(
+                /^https:\/\/t\.me\/socks\?/,
+                "tg://socks?"
+            );
+        }
 
+        return proxy;
+    })
+
+    // Keep only supported Telegram proxy formats
+    .filter(proxy =>
+        proxy.startsWith("tg://proxy?") ||
+        proxy.startsWith("tg://socks?")
+    );
+
+// Remove duplicates
+proxies = [...new Set(proxies)];
+    
     container.innerHTML = "";
 
     proxies.forEach((proxy, i) => {
